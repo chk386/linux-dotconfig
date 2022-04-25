@@ -1,5 +1,8 @@
 " Load Plugins
 call plug#begin()
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
@@ -24,8 +27,8 @@ call plug#begin()
     Plug 'tomtom/tcomment_vim'
 call plug#end()
 
-#colorscheme NeoSolarized
-#colorscheme solarized8_high
+"colorscheme NeoSolarized
+"colorscheme solarized8_high
 
 autocmd!
 scriptencoding utf-8
@@ -128,8 +131,13 @@ endif
 "}}}
 
 
+" vim-airline config "{{{
+" -------------------------------------------------------
+" 모든 buffers를 상단 탭으로 표시
+let g:airline#extensions#tabline#enabled = 1
 
 
+" }}}
 
 
 
@@ -180,7 +188,7 @@ nnoremap <Leader>ci <cmd>call NERDComment('n', 'toggle')<CR>
 
 " >> Lsp key bindings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
+"nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -194,10 +202,9 @@ nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
-lua <<EOF
-require("lsp")
-require("treesitter")
-require("statusbar")
-require("completion")
-EOF
-
+"lua <<EOF
+"require("lsp")
+"require("treesitter")
+"require("statusbar")
+"require("completion")
+"EOF
