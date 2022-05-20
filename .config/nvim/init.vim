@@ -1,4 +1,4 @@
-" Load Plugins
+" plugin 디렉토리에 있는 파일들은 자동으로 로드됨
 call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -9,12 +9,15 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  "Plug 'preservim/nerdtree'
   Plug 'preservim/nerdcommenter'
 
+  " nvim lua library(async, file util)
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-telescope/telescope.nvim'
+
+
+
+  Plug 'nvim-lua/popup.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/nvim-lsp-installer', { 'branch': 'main' }
   Plug 'hrsh7th/nvim-compe'
@@ -35,6 +38,8 @@ call plug#begin()
 
   Plug 'tomtom/tcomment_vim'
 call plug#end()
+
+runtime ./keymap.vim
 
 "colorscheme NeoSolarized
 "colorscheme solarized8_high
@@ -125,7 +130,7 @@ endif
 " true color
 if exists("&termguicolors") && exists("&winblend")
   syntax enable
-  set termguicolors
+  "set termguicolors
   set winblend=0
   set wildoptions=pum
   set pumblend=5
@@ -157,36 +162,6 @@ let g:airline_theme='jellybeans'
 
 
 
-" set leader key to ,
-let g:mapleader=","
-
-" >> Telescope bindings
-nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
-"}
-" most recently used files
-nnoremap <Leader>m <cmd>lua require'telescope.builtin'.oldfiles{}<CR>
-
-" find buffer
-nnoremap ; <cmd>lua require'telescope.builtin'.buffers{}<CR>
-
-" find in current buffer
-nnoremap <Leader>/ <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
-
-" bookmarks
-nnoremap <Leader>' <cmd>lua require'telescope.builtin'.marks{}<CR>
-
-" git files
-nnoremap <Leader>f <cmd>lua require'telescope.builtin'.git_files{}<CR>
-
-" all files
-nnoremap <Leader>bfs <cmd>lua require'telescope.builtin'.find_files{}<CR>
-
-" ripgrep like grep through dir
-nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
-
-" pick color scheme
-nnoremap <Leader>cs <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
-
 
 " NERD Commenter {{{
 " Create default mappings
@@ -217,29 +192,7 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 "}}}
 
-
-" NERDTree {{{
-
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
-" let g:NERDTreeShowHidden=1
-"
-" "nnoremap <leader>n :NERDTreeFocus<CR>
-" "nnoremap <C-n> :NERDTree<CR>
-" "nnoremap <C-t> :NERDTreeToggle<CR>
-" "nnoremap <C-f> :NERDTreeFind<CR>
-"
-" " Start NERDTree. If a file is specified, move the cursor to its window.
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-"
-" " Exit Vim if NERDTree is the only window remaining in the only tab.
-" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-"
-"}}}
-
-" nvim-tree config {{{
-
+"nvim-tree config {{{
 " vimrc
 let g:nvim_tree_git_hl = 1  "0 by default, will enable file highlight for git attributes (can be used without the icons).
 let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
@@ -289,7 +242,7 @@ let g:nvim_tree_icons = {
     \   }
     \ }
 
-nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <C-t> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
 " More available functions:

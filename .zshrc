@@ -111,7 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cat="batcat"
+alias cat="bat"
 
 export PATH=$HOME/.local/bin:$PATH
 myExa() { exa -alh --icons $1 }
@@ -121,6 +121,9 @@ alias ls="myExa"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
