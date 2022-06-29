@@ -1,7 +1,12 @@
 " Load Plugins
 call plug#begin()
+  " 상단 tab 표시
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+  " https://github.com/glepnir/galaxyline.nvim 이거부터 하자
+
+ 
 
   Plug 'kyazdani42/nvim-web-devicons' " for file icons
   Plug 'kyazdani42/nvim-tree.lua'
@@ -9,7 +14,8 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  "Plug 'preservim/nerdtree'
+    "Plug 'preservim/nerdtree'
+    "
   Plug 'preservim/nerdcommenter'
 
   Plug 'nvim-lua/plenary.nvim'
@@ -21,7 +27,6 @@ call plug#begin()
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
-  Plug 'NTBBloodbath/galaxyline.nvim', { 'branch': 'main' } "Maintained galaxyline
   Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
   Plug 'nikvdp/neomux'
@@ -64,8 +69,8 @@ set cc=80                   " set an 80 column border for good coding style
 filetype plugin indent on   "allow auto-indenting depending on file type
 syntax enable               " syntax highlighting
 set background=dark
-set mouse=a                " enable mouse click
-set clipboard=unnamedplus   " using system clipboard
+set mouse=v              " enable mouse click
+"set clipboard=unnamedplus   " using system clipboard
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 set ruler
@@ -145,8 +150,8 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-" let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_theme='jellybeans'
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_theme='google_dark'
 " }}}
 
 
@@ -215,27 +220,11 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
-"}}}
 
+" >> setup nerdcomment key bindings
+let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
 
-" NERDTree {{{
-
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
-" let g:NERDTreeShowHidden=1
-"
-" "nnoremap <leader>n :NERDTreeFocus<CR>
-" "nnoremap <C-n> :NERDTree<CR>
-" "nnoremap <C-t> :NERDTreeToggle<CR>
-" "nnoremap <C-f> :NERDTreeFind<CR>
-"
-" " Start NERDTree. If a file is specified, move the cursor to its window.
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-"
-" " Exit Vim if NERDTree is the only window remaining in the only tab.
-" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-"
 "}}}
 
 " nvim-tree config {{{
@@ -318,7 +307,7 @@ nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-p> <cmd>Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
+"nnoremap <silent> <C-n> <cmd>Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
@@ -328,8 +317,10 @@ nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 lua <<EOF
 require'init'
 require'nvim-tree-config'
+require'nvim-lsp-install'
 --require("lsp-config")
 --require("treesitter")
 --require("statusbar")
 --require("completion")
+
 EOF
