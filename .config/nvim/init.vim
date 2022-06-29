@@ -1,4 +1,4 @@
-" Load Plugins
+" plugin 디렉토리에 있는 파일들은 자동으로 로드됨
 call plug#begin()
   " 상단 tab 표시
   Plug 'vim-airline/vim-airline'
@@ -14,13 +14,20 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
+<<<<<<< HEAD
     "Plug 'preservim/nerdtree'
     "
+=======
+>>>>>>> 7448a18751596f30dc5d86e1b44f81e5c6b981f3
   Plug 'preservim/nerdcommenter'
 
+  " nvim lua library(async, file util)
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-telescope/telescope.nvim'
+
+
+
+  Plug 'nvim-lua/popup.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/nvim-lsp-installer', { 'branch': 'main' }
   Plug 'hrsh7th/nvim-compe'
@@ -40,6 +47,8 @@ call plug#begin()
 
   Plug 'tomtom/tcomment_vim'
 call plug#end()
+
+runtime ./keymap.vim
 
 "colorscheme NeoSolarized
 "colorscheme solarized8_high
@@ -130,7 +139,7 @@ endif
 " true color
 if exists("&termguicolors") && exists("&winblend")
   syntax enable
-  set termguicolors
+  "set termguicolors
   set winblend=0
   set wildoptions=pum
   set pumblend=5
@@ -162,36 +171,6 @@ let g:airline_theme='google_dark'
 
 
 
-" set leader key to ,
-let g:mapleader=","
-
-" >> Telescope bindings
-nnoremap <Leader>pp <cmd>lua require'telescope.builtin'.builtin{}<CR>
-"}
-" most recently used files
-nnoremap <Leader>m <cmd>lua require'telescope.builtin'.oldfiles{}<CR>
-
-" find buffer
-nnoremap ; <cmd>lua require'telescope.builtin'.buffers{}<CR>
-
-" find in current buffer
-nnoremap <Leader>/ <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
-
-" bookmarks
-nnoremap <Leader>' <cmd>lua require'telescope.builtin'.marks{}<CR>
-
-" git files
-nnoremap <Leader>f <cmd>lua require'telescope.builtin'.git_files{}<CR>
-
-" all files
-nnoremap <Leader>bfs <cmd>lua require'telescope.builtin'.find_files{}<CR>
-
-" ripgrep like grep through dir
-nnoremap <Leader>rg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
-
-" pick color scheme
-nnoremap <Leader>cs <cmd>lua require'telescope.builtin'.colorscheme{}<CR>
-
 
 " NERD Commenter {{{
 " Create default mappings
@@ -221,6 +200,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
 
+<<<<<<< HEAD
 " >> setup nerdcomment key bindings
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
@@ -229,6 +209,9 @@ let g:NERDSpaceDelims = 1
 
 " nvim-tree config {{{
 
+=======
+"nvim-tree config {{{
+>>>>>>> 7448a18751596f30dc5d86e1b44f81e5c6b981f3
 " vimrc
 let g:nvim_tree_git_hl = 1  "0 by default, will enable file highlight for git attributes (can be used without the icons).
 let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
@@ -278,7 +261,7 @@ let g:nvim_tree_icons = {
     \   }
     \ }
 
-nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <C-t> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
 " More available functions:
